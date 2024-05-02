@@ -6,17 +6,17 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        glue = "stepdefs",
-        features = "src/test/resources/features/TC01_create_user.feature",
-        tags = " @End2End ",
-        plugin = {
-                "html:target/html-report/report.html",
-                "json:target/json-report/report.json",
-                "junit:target/xml-report/report.xml",
-                "pretty",
-                "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"
+        plugin = {//report plugins
+                "pretty",//prints colored logs to the console
+                "html:target/reports/html-reports/default-cucumber-reports.html",//plugin used to generate reports in html format
+                "json:target/reports/json-reports/cucumber1.json",//plugin used to generate reports in json format
+                "junit:target/reports/xml-reports/cucumber1.xml",//plugin used to generate reports in xml format
+                "rerun:target/failedRerun.txt",
+                "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:" //For Spark report
         },
-        monochrome = false,
+        features = "src/test/resources/features",
+        glue = {"stepdefs"},
+        tags = "@End2End",
         dryRun = false
 )
 public class Runner {
